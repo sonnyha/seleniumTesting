@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from importTest import testFunction
 
 #   bare minimum you need for selenium to work
 #   initialize the service (where your driver lives, in this case chromedriver)
@@ -14,3 +15,5 @@ driver.get("https://www.google.com")
 #   wait = WebDriverWait(driver, 10)
 #   wait.until(expected_conditions.presence_of_element_located(By.CSS_Selector, ".someClass"))
 driver.implicitly_wait(5)
+
+print(testFunction())
