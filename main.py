@@ -9,3 +9,8 @@ driver = webdriver.Chrome(service=serviceObject)
 
 #   this will set 'driver' to the url in question
 driver.get("https://www.google.com")
+#   waits for x amount of seconds for task to complete, if it's complete it will move on to next step
+#   NOTE: it's global, use an explicit wait if it's just one element...
+#   wait = WebDriverWait(driver, 10)
+#   wait.until(expected_conditions.presence_of_element_located(By.CSS_Selector, ".someClass"))
+driver.implicitly_wait(5)
