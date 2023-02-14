@@ -30,3 +30,5 @@ print(driver.current_url)
 # consider using the chrome extension 'selectorshub' to find unique ids/classes or xpath/css
 driver.find_element(By.ID, "header-search-bar").send_keys("Kiriko")
 driver.find_element(By.CLASS_NAME, "_2aqH0n-kSzFY7HZZ5GL-Jb").click()
+
+
