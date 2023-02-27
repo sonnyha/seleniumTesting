@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -5,7 +6,6 @@ from selenium.webdriver.common.by import By
 # from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.common.action_chains import ActionChains
-# import time
 
 
 class AutoTesting:
@@ -15,27 +15,61 @@ class AutoTesting:
     application = ""
     filePath = ""
     serviceObject = ""
-    applications = []
-    browsers = []
-    testing = "hello world"
-    def initVariables(self):
-        app = input("Select Application:")
-        currentBrowser = input("Select Browser:")
-        filePath = input("Driver File Path:")
-        self.application = app
-        self.browser = currentBrowser
-        self.filePath = filePath
+    applications = {
+        1: "Marketer Book",
+        2: "Inventory Valuation",
+        3: "Inventory Management System"
+    }
+    browsers = {
+        1: "Google Chrome",
+        2: "Mozilla Firefox",
+        3: "Microsoft Edge"
+    }
 
-    def setApplication(self):
-      print("setAppHere")
+    def initVariables(self):
+        print(os.linesep +
+                'Marketer Book - 1' + os.linesep +
+                'Inventory Valuation - 2' + os.linesep +
+                'Inventory Management System (Both)- 3' + os.linesep
+        )
+        app = input("Select Application Number: ")
+        checkForValidNum = False
+
+        #   Protects from Invalid Inputs
+        while checkForValidNum is not True:
+            try:
+                self.applications[int(app)]
+                checkForValidNum = True
+                self.applications[int(app)]
+            except ValueError:
+                print("Invalid Selection... try again!")
+                app = input("Select Application Number: ")
+            except KeyError:
+                print("Invalid Selection... try again!")
+                app = input("Select Application Number: ")
+
+        print(os.linesep +
+                'Google Chrome - 1' + os.linesep +
+                'Mozilla Firefox - 2' + os.linesep +
+                'Microsoft Edge - 3' + os.linesep
+        )
+        currentBrowser = input("Select Browser Number: ")
+        filePath = input("Driver File Path: ")
+        self.application = self.applications[int(app)]
+        self.browser = self.browsers[int(currentBrowser)]
+        #   Hard coded for now
+        self.filePath = "/Users/sha549/Documents/chromedriver.exe"
+
+    def setApplication(self, app):
+        self.application = app
 
     def getApplication(self):
-        print("getAppHere")
+        return self.application
 
 #   Testing Purposes
 testVar = AutoTesting()
-print(testVar.testing)
 testVar.initVariables()
-print(testVar.application)
-print(testVar.browser)
-print(testVar.filePath)
+print("---------Selections Made----------")
+print(testVar.application + os.linesep + testVar.browser + os.linesep + testVar.filePath)
+
+

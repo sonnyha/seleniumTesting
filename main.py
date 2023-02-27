@@ -1,4 +1,4 @@
-import IMSTester as IMS
+import AutoTesting as IMS
 
 test = IMS
 test.startIMSTest()
