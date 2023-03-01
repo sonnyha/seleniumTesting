@@ -1,5 +1,6 @@
-import AutoTesting as IMS
+import AutoTesting as AT
+import ExecuteTesting as ET
 
-test = IMS
-test.startIMSTest()
+test = ET.ExecuteTesting()
+print("hello world")
 
