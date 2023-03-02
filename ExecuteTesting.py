@@ -15,7 +15,7 @@ class ExecuteTesting:
         AutoTestingObj = AutoTesting.AutoTesting()
         AutoTestingObj.intializingVariables()
         now = datetime.datetime.now()
-        self.execution_start = str(now)
+        self.execution_start = str(now.strftime("%x %X"))
         return AutoTestingObj
 
 #   Writes errors to the logfile and updates the execution_status on critical failure

@@ -24,3 +24,4 @@ print("------------------Object Fails Testing------------------")
 test.handlesError(dummy_test2)
 print(test.logfile, test.execution_status, test.execution_start, test.notification)
 test.reportAutoTesting()
+

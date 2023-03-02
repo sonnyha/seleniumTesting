@@ -13,17 +13,20 @@ class AutoTesting:
     application = ""
     filePath = ""
     serviceObject = ""
+    # Application Option
     applications = {
         1: "Marketer Book",
         2: "Inventory Valuation",
         3: "Inventory Management System"
     }
+    # Types of browsers
     browsers = {
         1: "Google Chrome",
         2: "Mozilla Firefox",
         3: "Microsoft Edge"
     }
 
+    # methods that need to be fleshed out
     def start(self):
         return "start"
     def exit(self):
