@@ -6,6 +6,11 @@ from selenium.webdriver.common.by import By
 # from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.common.action_chains import ActionChains
+#
+#
+# tool box module.... these are functions that can be used for all applications
+
+
 class AutoTesting:
     url = ""
     browser = ""
@@ -13,30 +18,39 @@ class AutoTesting:
     application = ""
     filePath = ""
     serviceObject = ""
+    applicationCode = -1
+    browserCode = -1
     # Application Option
     applications = {
-        1: "Marketer Book",
-        2: "Inventory Valuation",
-        3: "Inventory Management System"
+        1: "Inventory Management",
+        2: "Waterfield",
+        3: "SharePoint",
+        4: "OneStream"
     }
     # Types of browsers
     browsers = {
         1: "Google Chrome",
-        2: "Mozilla Firefox",
-        3: "Microsoft Edge"
+        2: "Microsoft Edge",
+        3: "Mozilla Firefox"
     }
 
-    # methods that need to be fleshed out
-    def start(self):
-        return "start"
+    #
+    def setSettings(self, application, browser):
+        self.application = self.applications[application]
+        self.browser = self.browser[browser]
+
     def exit(self):
         return "exit"
+
     def intializingVariables(self):
         return "init variable"
+
     def setApplication(self):
         return "set appplication"
+
     def getApllication(self):
         return "get application"
+
     def setBrowser(self):
         return "set browser"
     def getBrowserName(self):

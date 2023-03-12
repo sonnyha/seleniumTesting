@@ -1,23 +1,49 @@
 import AutoTesting
 import os
 import datetime
+from timeit import default_timer as timer
+# start = timer() end = timer() print(end - start)
 
 class ExecuteTesting:
     logfile = ""
     execution_status = "<Execution_Status Here>"
     execution_start = ""
+    execution_finish = ""
     notification = []
     errorCounter = 0
+    applicationSelection = -1
+    browserSelection = -1
+    AutoTestingObj = AutoTesting.AutoTesting()
+    # Welcome screen to get Application and Browser from user
+    #
 
-    def errorTest(self, func, *args, **kwargs):
+    def welcomeText(self):
+        print("\nWelcome to Automated Testing Script")
+        self.applicationSelection = input("Select Application:\n"
+                                            "1) Inventory Management\n"
+                                            "2) Waterfield \n"
+                                            "3) SharePoint\n"
+                                            "4) OneStream\n"
+                                          )
+        self.browserSelection = input("Select Browser:\n"
+                                      "1) Google Chrome\n"
+                                      "2) Microsoft Edge\n"
+                                      "3) Mozilla Firefox\n"
+                                      )
+        self.AutoTestingObj.applicationCode = self.applicationSelection
+        self.AutoTestingObj.browserCode = self.browserSelection
+        self.AutoTestingObj.setSettings(self.applicationSelection, self.browserSelection)
+
+    # Selenium has an exception library and will be implemented into
+    # this block in the future
+    def errorTest(self, testingFunction, *args, **kwargs):
         try:
-            # raise 10/0
-            func(*args, **kwargs)
-        except Exception as e:
-            print(f"Exception Type: {e}")
-            return e
-        # finally:
-        #     print("Executing finally clause")
+            testingFunction(*args, **kwargs)
+        except Exception as exceptionRaised:
+            print(f"Exception Type: {exceptionRaised}")
+            self.notification.append(exceptionRaised)
+            self.errorCounter = self.errorCounter + 1
+            return exceptionRaised
 
 #   Defines a new log file and execution status,
 #   the creates a new instance of AutoTesting and begins the testing process
@@ -28,16 +54,6 @@ class ExecuteTesting:
         self.execution_start = str(now.strftime("%x %X"))
         return AutoTestingObj
 
-#   Writes errors to the logfile and updates the execution_status on critical failure
-#     def handlesError(self, result):
-#         if result is True:
-#             self.logfile = self.logfile + "Failed on Line 29"
-#             self.execution_status = "Error Found"
-#             self.notification.append("Web Element Not Found")
-#             self.errorCounter = self.errorCounter + 1
-#             return "Error ACA290x"
-#         return "No Errors"
-
 #   Provides a response to users defined in the notification list that the execution
     #   has completed, the status of the test, and the time/duration of the testing execution
     def reportAutoTesting(self):
@@ -47,9 +63,35 @@ class ExecuteTesting:
             str(self.notification)
         )
 
+# dummy functions to test for raising exceptions
+    def divisionByZero(self):
+        result = 1/0
+        return result
+
+    def charPlusInt(self):
+        result = 'c' + 1
+        return result
+
+    def outOfIndex(self):
+        result = [1, 2]
+        return result[3]
+
+    def this_passes(self):
+        result = 1/1
+        return result
+
+    def openTest(self):
+        return open("fakeTextFile.txt")
 
 
-#   Libraries needed
+
+
+
+
+
+
+
+# Libraries needed
 # from selenium.common.exceptions import NoSuchElementException
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import WebDriverWait
