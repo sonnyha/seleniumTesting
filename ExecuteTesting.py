@@ -39,13 +39,12 @@ class ExecuteTesting:
         print(self.AutoTestingObj.url)
 
     def printAllSettings(self):
-        print(self.AutoTestingObj.application)
-        print(self.AutoTestingObj.browser)
-        print(self.AutoTestingObj.driver)
-        print(self.AutoTestingObj.filePath)
-        print(self.AutoTestingObj.applicationCode)
-        print(self.AutoTestingObj.browserCode)
-        print(self.AutoTestingObj.serviceObject)
+        print("Application: ", self.AutoTestingObj.application)
+        print("Browser: ", self.AutoTestingObj.browser)
+        print("File Path: ", self.AutoTestingObj.filePath)
+        print("Application Code: ", self.AutoTestingObj.applicationCode)
+        print("Browser Code: ", self.AutoTestingObj.browserCode)
+
     # Selenium has an exception library and will be implemented into
     # this block in the future
     def errorTest(self, testingFunction, *args, **kwargs):
@@ -74,6 +73,9 @@ class ExecuteTesting:
             "Num of Errors found: " + str(self.errorCounter) + os.linesep +
             str(self.notification)
         )
+
+    def goToApplication(self):
+        self.AutoTestingObj.goToApplication()
 
 # dummy functions to test for raising exceptions
     def divisionByZero(self):

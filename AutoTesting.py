@@ -1,4 +1,6 @@
 import os
+import time
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -14,11 +16,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 class AutoTesting:
     url = ""
     browser = ""
-    driver = ""
-    application = ""
-    #   Hard Coded File Path for now
+    # File Path hardcoded for now
     filePath = "/Users/sha549/Documents/chromedriver.exe"
-    serviceObject = "Service(" + filePath + ")"
+    serviceObject = Service(filePath)
+    application = ""
     applicationCode = -1
     browserCode = -1
     # Application Option
@@ -39,11 +40,18 @@ class AutoTesting:
         self.application = self.applications[appCode][0]
         self.browser = self.browsers[browserCode][0]
         self.url = self.applications[appCode][1]
-        self.driver = self.browsers[browserCode][1]
+        # self.driver = self.browsers[browserCode][1]
 
-    # set driver
-    def setDriver(self):
-        return 0
+    #   Build a Switch statement to launch the proper webdriver
+    def goToApplication(self):
+        match self.browserCode:
+            case 1:
+                serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
+                driver = webdriver.Chrome(service=serviceObject)
+                driver.get(self.applications[1][1])
+                time.sleep(10)
+                return
+
     def exit(self):
         return "exit"
 
