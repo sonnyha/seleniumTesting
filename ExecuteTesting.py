@@ -1,6 +1,7 @@
 import AutoTesting
 import os
 import datetime
+import time
 from timeit import default_timer as timer
 # start = timer() end = timer() print(end - start)
 
@@ -8,7 +9,8 @@ class ExecuteTesting:
     logfile = ""
     execution_status = "<Execution_Status Here>"
     execution_start = ""
-    execution_finish = ""
+    test_start_time = 0
+    test_end_time = 0
     notification = []
     errorCounter = 0
     applicationSelection = -1
@@ -100,12 +102,20 @@ class ExecuteTesting:
     def openTest(self):
         return open("fakeTextFile.txt")
 
+    def goToURLTest(self, url):
+        self.AutoTestingObj.goToURL(url)
+        time.sleep(2)
+        return
 
+    def startTime(self):
+        self.test_start_time = time.time()
 
+    def endTime(self):
+        self.test_end_time = time.time()
 
-
-
-
+    def timeElapsed(self):
+        time_elapsed = self.test_end_time - self.test_start_time
+        return time_elapsed
 
 
 # Libraries needed

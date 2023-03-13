@@ -73,6 +73,13 @@ class AutoTesting:
                 self.driver.get("https://www.targaresources.com")
         time.sleep(2)
 
+    def goToURL(self, url):
+        self.driver.get(url)
+        return url
+
+    def clickOnObjct(self, locator, typeOfLocator):
+        return 0
+
     def exitApplication(self):
         return "exit"
 
