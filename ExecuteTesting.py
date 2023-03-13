@@ -30,14 +30,22 @@ class ExecuteTesting:
                                       "3) Mozilla Firefox\n"
                                       ))
         self.AutoTestingObj.setSettings(self.applicationSelection, self.browserSelection)
-        self.AutoTestingObj.applicationCode = int(self.applicationSelection)
-        self.AutoTestingObj.browserCode = int(self.browserSelection)
+        self.AutoTestingObj.applicationCode = self.applicationSelection
+        self.AutoTestingObj.browserCode = self.browserSelection
 
     def printSettings(self):
         print(self.AutoTestingObj.application)
         print(self.AutoTestingObj.browser)
         print(self.AutoTestingObj.url)
 
+    def printAllSettings(self):
+        print(self.AutoTestingObj.application)
+        print(self.AutoTestingObj.browser)
+        print(self.AutoTestingObj.driver)
+        print(self.AutoTestingObj.filePath)
+        print(self.AutoTestingObj.applicationCode)
+        print(self.AutoTestingObj.browserCode)
+        print(self.AutoTestingObj.serviceObject)
     # Selenium has an exception library and will be implemented into
     # this block in the future
     def errorTest(self, testingFunction, *args, **kwargs):

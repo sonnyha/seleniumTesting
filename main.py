@@ -16,5 +16,8 @@ print("--------------------Test Results--------------------")
 test.reportAutoTesting()
 print("")
 test.printSettings()
-
-
+print("")
+test.printAllSettings()
+# filePath = "/Users/sha549/Documents/chromedriver.exe"
+# serviceObject = "Service(" + filePath + ")"
+# print(serviceObject)

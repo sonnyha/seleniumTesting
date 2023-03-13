@@ -16,32 +16,34 @@ class AutoTesting:
     browser = ""
     driver = ""
     application = ""
-    filePath = ""
-    serviceObject = ""
+    #   Hard Coded File Path for now
+    filePath = "/Users/sha549/Documents/chromedriver.exe"
+    serviceObject = "Service(" + filePath + ")"
     applicationCode = -1
     browserCode = -1
     # Application Option
     applications = {
-        1: ["Inventory Management", "http://inventorymanagementdev:4431/"],
-        2: ["Waterfield", "http://inventorymanagementdev:4431/"], # pretend these urls point to to their respective urls
-        3: ["SharePoint", "http://inventorymanagementdev:4431/"],
-        4: ["OneStream", "http://inventorymanagementdev:4431/"]
+        1: ["Inventory Management", "http://inventorymanagement.targa.com/"],
+        2: ["Waterfield", "http://waterfield.com/"],  # pretend these urls point to their respective urls
+        3: ["SharePoint", "http://sharepoint.com."],
+        4: ["OneStream", "http://onestream.com/"]
     }
     # Types of browsers
     browsers = {
-        1: "Google Chrome",
-        2: "Microsoft Edge",
-        3: "Mozilla Firefox"
+        1: ["Google Chrome",  "webdriver.Chrome(service=serviceObject)"],
+        2: ["Microsoft Edge", "webdriver.Edge(service=serviceObject)"],
+        3: ["Mozilla Firefox", "webdriver.Firefox(service=serviceObject)"]
     }
 
-    #
     def setSettings(self, appCode, browserCode):
         self.application = self.applications[appCode][0]
-        self.browser = self.browsers[browserCode]
+        self.browser = self.browsers[browserCode][0]
         self.url = self.applications[appCode][1]
+        self.driver = self.browsers[browserCode][1]
 
     # set driver
-
+    def setDriver(self):
+        return 0
     def exit(self):
         return "exit"
 
