@@ -5,7 +5,7 @@ test.welcomeText()
 test.launchAutoTesting()
 
 # testing raising exception function
-print("-----------------Exceptions Found-------------------")
+print("\n-----------------Exceptions Found-------------------")
 test.errorTest(test.divisionByZero)
 test.errorTest(test.charPlusInt)
 test.errorTest(test.outOfIndex)

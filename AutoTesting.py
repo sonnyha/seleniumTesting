@@ -40,43 +40,38 @@ class AutoTesting:
         self.application = self.applications[appCode][0]
         self.browser = self.browsers[browserCode][0]
         self.url = self.applications[appCode][1]
-        # self.driver = self.browsers[browserCode][1]
 
-    #   Build a Switch statement to launch the proper webdriver
+    #   Everything points to Chrome driver for now
     def setServiceObject(self):
         match self.browserCode:
             case 1:
                 self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
                 return
             case 2:
-                self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
+                self.serviceObject = Service("/Users/sha549/Documents/msedgedriver.exe")
                 return
             case 3:
                 self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
                 return
 
     def goToApplication(self):
+        match self.browserCode:
+            case 1:
+                self.driver = webdriver.Chrome(service=self.serviceObject)
+            case 2:
+                self.driver = webdriver.Edge(service=self.serviceObject)
+            case 3:
+                self.driver = webdriver.Chrome(service=self.serviceObject)
         match self.applicationCode:
             case 1:
-                driver = webdriver.Chrome(service=self.serviceObject)
-                driver.get(self.applications[1][1])
-                time.sleep(2)
-                return
+                self.driver.get(self.applications[1][1])
             case 2:
-                driver = webdriver.Chrome(service=self.serviceObject)
-                driver.get("https://www.google.com")
-                time.sleep(2)
-                return
+                self.driver.get("https://www.google.com")
             case 3:
-                driver = webdriver.Chrome(service=self.serviceObject)
-                driver.get("https://www.reddit.com")
-                time.sleep(2)
-                return
+                self.driver.get("https://www.reddit.com")
             case 4:
-                driver = webdriver.Chrome(service=self.serviceObject)
-                driver.get("https://www.targaresources.com")
-                time.sleep(2)
-                return
+                self.driver.get("https://www.targaresources.com")
+        time.sleep(2)
 
     def exitApplication(self):
         return "exit"
