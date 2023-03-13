@@ -43,16 +43,42 @@ class AutoTesting:
         # self.driver = self.browsers[browserCode][1]
 
     #   Build a Switch statement to launch the proper webdriver
-    def goToApplication(self):
+    def setServiceObject(self):
         match self.browserCode:
             case 1:
-                serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
-                driver = webdriver.Chrome(service=serviceObject)
-                driver.get(self.applications[1][1])
-                time.sleep(10)
+                self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
+                return
+            case 2:
+                self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
+                return
+            case 3:
+                self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
                 return
 
-    def exit(self):
+    def goToApplication(self):
+        match self.applicationCode:
+            case 1:
+                driver = webdriver.Chrome(service=self.serviceObject)
+                driver.get(self.applications[1][1])
+                time.sleep(2)
+                return
+            case 2:
+                driver = webdriver.Chrome(service=self.serviceObject)
+                driver.get("https://www.google.com")
+                time.sleep(2)
+                return
+            case 3:
+                driver = webdriver.Chrome(service=self.serviceObject)
+                driver.get("https://www.reddit.com")
+                time.sleep(2)
+                return
+            case 4:
+                driver = webdriver.Chrome(service=self.serviceObject)
+                driver.get("https://www.targaresources.com")
+                time.sleep(2)
+                return
+
+    def exitApplication(self):
         return "exit"
 
     def intializingVariables(self):

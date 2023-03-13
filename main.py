@@ -1,6 +1,5 @@
 import ExecuteTesting as ET
 
-
 test = ET.ExecuteTesting()
 test.welcomeText()
 test.launchAutoTesting()
@@ -18,4 +17,5 @@ print("")
 test.printSettings()
 print("")
 test.printAllSettings()
+test.setServiceObject()
 test.goToApplication()

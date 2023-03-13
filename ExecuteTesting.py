@@ -77,6 +77,9 @@ class ExecuteTesting:
     def goToApplication(self):
         self.AutoTestingObj.goToApplication()
 
+    def setServiceObject(self):
+        self.AutoTestingObj.setServiceObject()
+
 # dummy functions to test for raising exceptions
     def divisionByZero(self):
         result = 1/0
