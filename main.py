@@ -14,7 +14,7 @@ test.errorTest(test.openTest)
 
 print("--------------------Test Results--------------------")
 test.reportAutoTesting()
-print(test.applicationSelection)
-print(test.browserSelection)
+print("")
+test.printSettings()
 
 

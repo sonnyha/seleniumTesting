@@ -15,24 +15,28 @@ class ExecuteTesting:
     browserSelection = -1
     AutoTestingObj = AutoTesting.AutoTesting()
     # Welcome screen to get Application and Browser from user
-    #
 
     def welcomeText(self):
         print("\nWelcome to Automated Testing Script")
-        self.applicationSelection = input("Select Application:\n"
+        self.applicationSelection = int(input("Select Application:\n"
                                             "1) Inventory Management\n"
                                             "2) Waterfield \n"
                                             "3) SharePoint\n"
                                             "4) OneStream\n"
-                                          )
-        self.browserSelection = input("Select Browser:\n"
+                                          ))
+        self.browserSelection = int(input("Select Browser:\n"
                                       "1) Google Chrome\n"
                                       "2) Microsoft Edge\n"
                                       "3) Mozilla Firefox\n"
-                                      )
-        self.AutoTestingObj.applicationCode = self.applicationSelection
-        self.AutoTestingObj.browserCode = self.browserSelection
+                                      ))
         self.AutoTestingObj.setSettings(self.applicationSelection, self.browserSelection)
+        self.AutoTestingObj.applicationCode = int(self.applicationSelection)
+        self.AutoTestingObj.browserCode = int(self.browserSelection)
+
+    def printSettings(self):
+        print(self.AutoTestingObj.application)
+        print(self.AutoTestingObj.browser)
+        print(self.AutoTestingObj.url)
 
     # Selenium has an exception library and will be implemented into
     # this block in the future

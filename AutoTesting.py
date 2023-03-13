@@ -22,10 +22,10 @@ class AutoTesting:
     browserCode = -1
     # Application Option
     applications = {
-        1: "Inventory Management",
-        2: "Waterfield",
-        3: "SharePoint",
-        4: "OneStream"
+        1: ["Inventory Management", "http://inventorymanagementdev:4431/"],
+        2: ["Waterfield", "http://inventorymanagementdev:4431/"], # pretend these urls point to to their respective urls
+        3: ["SharePoint", "http://inventorymanagementdev:4431/"],
+        4: ["OneStream", "http://inventorymanagementdev:4431/"]
     }
     # Types of browsers
     browsers = {
@@ -35,9 +35,12 @@ class AutoTesting:
     }
 
     #
-    def setSettings(self, application, browser):
-        self.application = self.applications[application]
-        self.browser = self.browser[browser]
+    def setSettings(self, appCode, browserCode):
+        self.application = self.applications[appCode][0]
+        self.browser = self.browsers[browserCode]
+        self.url = self.applications[appCode][1]
+
+    # set driver
 
     def exit(self):
         return "exit"
