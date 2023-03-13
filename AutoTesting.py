@@ -1,6 +1,4 @@
-import os
 import time
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -77,7 +75,23 @@ class AutoTesting:
         self.driver.get(url)
         return url
 
+    #   In Progress
     def clickOnObjct(self, locator, typeOfLocator):
+        match locator.casefold():
+            case "class":
+                self.driver.find_element(By.CLASS_NAME, typeOfLocator).click()
+            case "xpath":
+                self.driver.find_element(By.XPATH, typeOfLocator).click()
+            case "id":
+                self.driver.find_element(By.ID, typeOfLocator).click()
+            case "name":
+                self.driver.find_element(By.NAME, typeOfLocator).click()
+            case "css":
+                self.driver.find_element(By.CSS_SELECTOR, typeOfLocator).click()
+            case "link":
+                self.driver.find_element(By.LINK_TEXT, typeOfLocator).click()
+            case "partial":
+                self.driver.find_element(By.PARTIAL_LINK_TEXT, typeOfLocator).click()
         return 0
 
     def exitApplication(self):
@@ -86,16 +100,9 @@ class AutoTesting:
     def intializingVariables(self):
         return "init variable"
 
-    def setApplication(self):
-        return "set appplication"
-
-    def getApllication(self):
-        return "get application"
-
     def setBrowser(self):
         return "set browser"
-    def getBrowserName(self):
-        return "get browser name"
+
     def setPathToServiceObject(self):
         return "set path to service object"
     def getPathToServiceObject(self):

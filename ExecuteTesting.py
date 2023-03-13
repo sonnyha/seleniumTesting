@@ -43,6 +43,7 @@ class ExecuteTesting:
     def printAllSettings(self):
         print("Application: ", self.AutoTestingObj.application)
         print("Browser: ", self.AutoTestingObj.browser)
+        print("URL: ", self.AutoTestingObj.url)
         print("File Path: ", self.AutoTestingObj.filePath)
         print("Application Code: ", self.AutoTestingObj.applicationCode)
         print("Browser Code: ", self.AutoTestingObj.browserCode)
@@ -115,7 +116,7 @@ class ExecuteTesting:
 
     def timeElapsed(self):
         time_elapsed = self.test_end_time - self.test_start_time
-        return time_elapsed
+        print("Time Elapsed: ", str("%.2f" % time_elapsed) + " seconds")
 
 
 # Libraries needed
