@@ -112,6 +112,9 @@ class AutoTesting:
     def getURL(self):
         return self.url
 
+    def sendKey(self, comment, keysToSend):
+        return 0
+
 
 # class AutoTesting:
 #     url = ""
