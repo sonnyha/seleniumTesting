@@ -49,6 +49,9 @@ class ExecuteTesting:
         print("Application Code: ", self.AutoTestingObj.applicationCode)
         print("Browser Code: ", self.AutoTestingObj.browserCode)
 
+    def printLog(self):
+        print(self.logfile)
+
     # Selenium has an exception library and will be implemented into
     # this block in the future
     def errorTest(self, testingFunction, *args, **kwargs):
@@ -66,7 +69,7 @@ class ExecuteTesting:
         AutoTestingObj = AutoTesting.AutoTesting()
         now = datetime.datetime.now()
         self.execution_start = str(now.strftime("%x %X"))
-        return AutoTestingObj
+        self.logfile = self.logfile + "----------Log File For " + self.AutoTestingObj.application + "---------------"
 
 #   Provides a response to users defined in the notification list that the execution
     #   has completed, the status of the test, and the time/duration of the testing execution
@@ -105,6 +108,7 @@ class ExecuteTesting:
 
     def goToURLTest(self, url):
         self.AutoTestingObj.goToURL(url)
+        self.logfile = self.logfile + "\nGo To URL: " + url + " (successful)"
         time.sleep(2)
         return
 
@@ -124,6 +128,7 @@ class ExecuteTesting:
 
     def clickOnObject(self, locator, locatorName):
         self.AutoTestingObj.clickOnObj(locator, locatorName)
+        self.logfile = self.logfile + "\nClick On web element " + locator + ": " + locatorName + " (successful)"
         return
 
 # Libraries needed
