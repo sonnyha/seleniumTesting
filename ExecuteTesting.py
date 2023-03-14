@@ -16,6 +16,7 @@ class ExecuteTesting:
     applicationSelection = -1
     browserSelection = -1
     AutoTestingObj = AutoTesting.AutoTesting()
+    closeAppCode = -1
     # Welcome screen to get Application and Browser from user
 
     def welcomeText(self):
@@ -118,6 +119,9 @@ class ExecuteTesting:
         time_elapsed = self.test_end_time - self.test_start_time
         print("Time Elapsed: ", str("%.2f" % time_elapsed) + " seconds")
 
+    def closeAppPrompt(self):
+        self.closeAppCode = self.AutoTestingObj.exitApplication()
+        return self.closeAppCode
 
 # Libraries needed
 # from selenium.common.exceptions import NoSuchElementException

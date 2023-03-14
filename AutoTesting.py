@@ -20,6 +20,7 @@ class AutoTesting:
     application = ""
     applicationCode = -1
     browserCode = -1
+    closeProgram = -1
     # Application Option
     applications = {
         1: ["Inventory Management", "http://inventorymanagement.targa.com/"],
@@ -95,7 +96,11 @@ class AutoTesting:
         return 0
 
     def exitApplication(self):
-        return "exit"
+        self.driver.close()
+        self.closeProgram = input("\nWould you like to perform another Test? \n 1: Yes \n 2: No\n")
+        return self.closeProgram
+
+
 
     def intializingVariables(self):
         return "init variable"
@@ -105,10 +110,13 @@ class AutoTesting:
 
     def setPathToServiceObject(self):
         return "set path to service object"
+
     def getPathToServiceObject(self):
         return "get path to service object"
+
     def setURL(self):
         return "set URL"
+
     def getURL(self):
         return "get URL"
     def verifyComponents(self):
@@ -183,11 +191,3 @@ class AutoTesting:
 #
 #     def getApplication(self):
 #         return self.application
-
-# #   Testing Purposes
-# testVar = AutoTesting()
-# testVar.initVariables()
-# print("---------Selections Made----------")
-# print(testVar.application + os.linesep + testVar.browser + os.linesep + testVar.filePath)
-
-
