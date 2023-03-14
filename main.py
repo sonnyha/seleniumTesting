@@ -19,11 +19,11 @@ while appOpen != 2:
     test.printAllSettings()
     test.setServiceObject()
     test.goToApplication()
+    test.clickOnObject("class", "gLFyf")  # Testing purposes only (will not be in main.py) (only works for 2)
+    test.clickOnObject("class", "sbct")  # Testing purposes only (will not be in main.py) (only works for 2)
     test.endTime()
     test.timeElapsed()
-    appOpen = int(test.closeAppPrompt())
-
-
+    appOpen = int(test.closeAppPrompt())    # Returns 1 (Yes) or 2 (No), Loops if 1
 
 
 

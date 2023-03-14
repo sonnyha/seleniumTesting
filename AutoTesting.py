@@ -1,8 +1,8 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 # from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.common.action_chains import ActionChains
@@ -65,11 +65,11 @@ class AutoTesting:
             case 1:
                 self.driver.get(self.applications[1][1])
             case 2:
-                self.driver.get("https://www.google.com")
+                self.driver.get("https://www.google.com")   # "Waterfield"
             case 3:
-                self.driver.get("https://www.reddit.com")
+                self.driver.get("https://www.reddit.com")   # "Sharepoint"
             case 4:
-                self.driver.get("https://www.targaresources.com")
+                self.driver.get("https://www.targaresources.com")   # "OneStream"
         time.sleep(2)
 
     def goToURL(self, url):
@@ -77,22 +77,22 @@ class AutoTesting:
         return url
 
     #   In Progress
-    def clickOnObjct(self, locator, typeOfLocator):
+    def clickOnObj(self, locator, locatorName):
         match locator.casefold():
             case "class":
-                self.driver.find_element(By.CLASS_NAME, typeOfLocator).click()
+                self.driver.find_element(By.CLASS_NAME, locatorName).click()
             case "xpath":
-                self.driver.find_element(By.XPATH, typeOfLocator).click()
+                self.driver.find_element(By.XPATH, locatorName).click()
             case "id":
-                self.driver.find_element(By.ID, typeOfLocator).click()
+                self.driver.find_element(By.ID, locatorName).click()
             case "name":
-                self.driver.find_element(By.NAME, typeOfLocator).click()
+                self.driver.find_element(By.NAME, locatorName).click()
             case "css":
-                self.driver.find_element(By.CSS_SELECTOR, typeOfLocator).click()
+                self.driver.find_element(By.CSS_SELECTOR, locatorName).click()
             case "link":
-                self.driver.find_element(By.LINK_TEXT, typeOfLocator).click()
+                self.driver.find_element(By.LINK_TEXT, locatorName).click()
             case "partial":
-                self.driver.find_element(By.PARTIAL_LINK_TEXT, typeOfLocator).click()
+                self.driver.find_element(By.PARTIAL_LINK_TEXT, locatorName).click()
         return 0
 
     def exitApplication(self):
@@ -100,39 +100,18 @@ class AutoTesting:
         self.closeProgram = input("\nWould you like to perform another Test? \n 1: Yes \n 2: No\n")
         return self.closeProgram
 
-
-
-    def intializingVariables(self):
-        return "init variable"
-
-    def setBrowser(self):
-        return "set browser"
-
-    def setPathToServiceObject(self):
-        return "set path to service object"
+    def setPathToServiceObject(self, path):
+        self.filePath = path
 
     def getPathToServiceObject(self):
-        return "get path to service object"
+        return self.filePath
 
-    def setURL(self):
-        return "set URL"
+    def setURL(self, url):
+        self.url = url
 
     def getURL(self):
-        return "get URL"
-    def verifyComponents(self):
-        return "verify components"
-    def setMissingComponents(self):
-        return "set missing Components"
-    def changeBrowser(self):
-        return"change browser"
-    def beginTest(self):
-        return "begin test"
-    def cancelTest(self):
-        return "cancel test"
-    def pause(self):
-        return "pause"
-    def resume(self):
-        return "resume"
+        return self.url
+
 
 # class AutoTesting:
 #     url = ""

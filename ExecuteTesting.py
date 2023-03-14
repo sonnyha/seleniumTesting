@@ -64,7 +64,6 @@ class ExecuteTesting:
 #   the creates a new instance of AutoTesting and begins the testing process
     def launchAutoTesting(self):
         AutoTestingObj = AutoTesting.AutoTesting()
-        AutoTestingObj.intializingVariables()
         now = datetime.datetime.now()
         self.execution_start = str(now.strftime("%x %X"))
         return AutoTestingObj
@@ -122,6 +121,10 @@ class ExecuteTesting:
     def closeAppPrompt(self):
         self.closeAppCode = self.AutoTestingObj.exitApplication()
         return self.closeAppCode
+
+    def clickOnObject(self, locator, locatorName):
+        self.AutoTestingObj.clickOnObj(locator, locatorName)
+        return
 
 # Libraries needed
 # from selenium.common.exceptions import NoSuchElementException
