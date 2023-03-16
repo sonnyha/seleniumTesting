@@ -9,7 +9,7 @@ from timeit import default_timer as timer
 # start = timer() end = timer() print(end - start)
 
 class ExecuteTesting:
-    logfile = ""
+    logfile = "\n"
     execution_status = "<Execution_Status Here>"
     execution_start = ""
     test_start_time = 0
@@ -42,7 +42,7 @@ class ExecuteTesting:
         self.AutoTestingObj.browserCode = self.browserSelection
 
     def connectionTest(self):
-            self.connectionCode = requests.get("http://ThisIsAFakeURL23049012387wx1.com/", verify=False).status_code
+            self.connectionCode = requests.get(self.AutoTestingObj.url, verify=False).status_code
             print("Status Code: " + str(self.connectionCode))
     def connectionFailed(self):
         self.logfile = "\nConnection could not be made to " + self.AutoTestingObj.application + "! (Failed)" + "\nError Code: " + str(self.connectionCode)
@@ -50,12 +50,16 @@ class ExecuteTesting:
     def connectionSuccessful(self):
         self.logfile = self.logfile + "\nConnection made to " + self.AutoTestingObj.application + " (successful)"
 
+    def saveLogFile(self):
+        return self.logfile
+
     def printSettings(self):
         print(self.AutoTestingObj.application)
         print(self.AutoTestingObj.browser)
         print(self.AutoTestingObj.url)
 
     def printAllSettings(self):
+        print("\n--------------Settings and Configuration------------------")
         print("Application: ", self.AutoTestingObj.application)
         print("Browser: ", self.AutoTestingObj.browser)
         print("URL: ", self.AutoTestingObj.url)

@@ -1,18 +1,6 @@
 import ExecuteTesting as ET
 appOpen = -1
-
-
-# # try:
-# #     connection test function
-# #     except connection error
-# # else:
-# #     begin testing
-# #
-#
-# test = ET.ExecuteTesting()
-# test.connectionTest()
-
-
+logfile = ""
 
 while appOpen != 2:
     test = ET.ExecuteTesting()
@@ -35,7 +23,6 @@ while appOpen != 2:
         test.connectionTest()
     except Exception as exceptionRaised:
         test.connectionFailed()
-        break
     else:
         test.connectionSuccessful()
         print("Connection Initiated...")
@@ -51,6 +38,7 @@ while appOpen != 2:
     test.endTime()
     test.timeElapsed()
     appOpen = int(test.closeAppPrompt())    # Returns 1 (Yes) or 2 (No), Loops if 1
+test.printAllSettings()
 test.printLog()
 print("\nThank you, come again.")
 
