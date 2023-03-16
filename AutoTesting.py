@@ -26,7 +26,8 @@ class AutoTesting:
         1: ["Inventory Management", "http://inventorymanagement.targa.com/"],
         2: ["Waterfield", "http://waterfield.com/"],  # pretend these urls point to their respective urls
         3: ["SharePoint", "http://sharepoint.com."],
-        4: ["OneStream", "http://onestream.com/"]
+        4: ["OneStream", "http://onestream.com/"],
+        5: ["Bad URL Test", "http://ThisIsAFakeURL23049012387wx1.com/"]
     }
     # Types of browsers
     browsers = {
@@ -52,7 +53,9 @@ class AutoTesting:
             case 3:
                 self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
                 return
-
+            # case 4:
+            #     self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
+                return
     def goToApplication(self):
         match self.browserCode:
             case 1:
@@ -93,6 +96,7 @@ class AutoTesting:
                 self.driver.find_element(By.LINK_TEXT, locatorName).click()
             case "partial":
                 self.driver.find_element(By.PARTIAL_LINK_TEXT, locatorName).click()
+        time.sleep(2)
         return 0
 
     def exitApplication(self):

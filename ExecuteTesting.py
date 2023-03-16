@@ -2,6 +2,9 @@ import AutoTesting
 import os
 import datetime
 import time
+import requests
+
+
 from timeit import default_timer as timer
 # start = timer() end = timer() print(end - start)
 
@@ -17,6 +20,7 @@ class ExecuteTesting:
     browserSelection = -1
     AutoTestingObj = AutoTesting.AutoTesting()
     closeAppCode = -1
+    connectionCode = -1
     # Welcome screen to get Application and Browser from user
 
     def welcomeText(self):
@@ -26,6 +30,7 @@ class ExecuteTesting:
                                             "2) Waterfield \n"
                                             "3) SharePoint\n"
                                             "4) OneStream\n"
+                                            "5) Bad URL Test\n"
                                           ))
         self.browserSelection = int(input("Select Browser:\n"
                                       "1) Google Chrome\n"
@@ -35,6 +40,15 @@ class ExecuteTesting:
         self.AutoTestingObj.setSettings(self.applicationSelection, self.browserSelection)
         self.AutoTestingObj.applicationCode = self.applicationSelection
         self.AutoTestingObj.browserCode = self.browserSelection
+
+    def connectionTest(self):
+            self.connectionCode = requests.get("http://ThisIsAFakeURL23049012387wx1.com/", verify=False).status_code
+            print("Status Code: " + str(self.connectionCode))
+    def connectionFailed(self):
+        self.logfile = "\nConnection could not be made to " + self.AutoTestingObj.application + "! (Failed)" + "\nError Code: " + str(self.connectionCode)
+
+    def connectionSuccessful(self):
+        self.logfile = self.logfile + "\nConnection made to " + self.AutoTestingObj.application + " (successful)"
 
     def printSettings(self):
         print(self.AutoTestingObj.application)
@@ -70,6 +84,7 @@ class ExecuteTesting:
         now = datetime.datetime.now()
         self.execution_start = str(now.strftime("%x %X"))
         self.logfile = self.logfile + "----------Log File For " + self.AutoTestingObj.application + "---------------"
+        self.logfile = self.logfile + "\nGo To Application " + self.AutoTestingObj.application + " (successful)"
 
 #   Provides a response to users defined in the notification list that the execution
     #   has completed, the status of the test, and the time/duration of the testing execution
@@ -130,6 +145,9 @@ class ExecuteTesting:
         self.AutoTestingObj.clickOnObj(locator, locatorName)
         self.logfile = self.logfile + "\nClick On web element " + locator + ": " + locatorName + " (successful)"
         return
+
+
+
 
 # Libraries needed
 # from selenium.common.exceptions import NoSuchElementException

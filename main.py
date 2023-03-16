@@ -1,26 +1,46 @@
 import ExecuteTesting as ET
 appOpen = -1
 
+
+# # try:
+# #     connection test function
+# #     except connection error
+# # else:
+# #     begin testing
+# #
+#
+# test = ET.ExecuteTesting()
+# test.connectionTest()
+
+
+
 while appOpen != 2:
     test = ET.ExecuteTesting()
     test.welcomeText()
     test.launchAutoTesting()
     test.startTime()
-    # testing raising exception function
-    print("\n-----------------Exceptions Found-------------------")
-    test.errorTest(test.divisionByZero)
-    test.errorTest(test.charPlusInt)
-    test.errorTest(test.outOfIndex)
-    test.errorTest(test.openTest)
-    print("\n--------------------Test Results--------------------")
-    test.reportAutoTesting()
-    print("\n-------------------Print Settings-------------------")
-    # test.printSettings()
-    test.printAllSettings()
-    test.setServiceObject()
+    # # testing raising exception function
+    # print("\n-----------------Exceptions Found-------------------")
+    # test.errorTest(test.divisionByZero)
+    # test.errorTest(test.charPlusInt)
+    # test.errorTest(test.outOfIndex)
+    # test.errorTest(test.openTest)
+    # print("\n--------------------Test Results--------------------")
+    # test.reportAutoTesting()
+    # print("\n-------------------Print Settings-------------------")
+    # test.printAllSettings()
+    # test.setServiceObject()
     test.goToApplication()
+    try:
+        test.connectionTest()
+    except Exception as exceptionRaised:
+        test.connectionFailed()
+        break
+    else:
+        test.connectionSuccessful()
+        print("Connection Initiated...")
 
-    # #   Testing URL Change function in main.py
+    # # #   Testing URL Change function in main.py
     # test.goToURLTest("https://www.targaresources.com")      # Testing Purposes (will not be in main.py)
     # test.goToURLTest("https://www.bbc.com/")                # Testing Purposes (will not be in main.py)
     # test.goToURLTest("https://www.google.com/")             # Testing Purposes (will not be in main.py)
