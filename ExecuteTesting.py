@@ -40,15 +40,25 @@ class ExecuteTesting:
                                             "3) Waterfield\n"
                                             "4) OneStream\n"
                                             "5) Bad URL Test\n"
+                                            "6) Exit\n"
                                           ))
+        if self.applicationSelection == 6:
+            print("\nThank you, come again.")
+            quit()
         self.browserSelection = int(input("Select Browser:\n"
                                       "1) Google Chrome\n"
                                       "2) Microsoft Edge\n"
                                       "3) Mozilla Firefox\n"
+                                      "4) Exit\n"
                                       ))
+        if self.browserSelection == 4:
+            print("\nThank you, come again.")
+            quit()
         self.AutoTestingObj.setSettings(self.applicationSelection, self.browserSelection)
         self.AutoTestingObj.applicationCode = self.applicationSelection
         self.AutoTestingObj.browserCode = self.browserSelection
+
+
 
     def connectionTest(self):
             self.connectionCode = requests.get(self.AutoTestingObj.url, verify=False, timeout=20).status_code
@@ -112,7 +122,6 @@ class ExecuteTesting:
 
     def setServiceObject(self):
         self.AutoTestingObj.setServiceObject()
-
 
     def goToURLTest(self, url):
         self.AutoTestingObj.goToURL(url)

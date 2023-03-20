@@ -15,8 +15,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 class AutoTesting:
     url = ""
     browser = ""
-    # File Path hardcoded for now
-    filePath = "/Users/sha549/Documents/chromedriver.exe"
+    filePath = "/Users/sha549/Documents/chromedriver.exe"     # File Path hardcoded for now
     serviceObject = Service(filePath)
     application = ""
     applicationCode = -1
@@ -32,9 +31,9 @@ class AutoTesting:
     }
     # Types of browsers
     browsers = {
-        1: ["Google Chrome",  webdriver.Chrome],
-        2: ["Microsoft Edge", webdriver.Edge],
-        3: ["Mozilla Firefox", webdriver.Firefox]
+        1: ["Google Chrome",  webdriver.Chrome, "/Users/sha549/Documents/chromedriver.exe"],
+        2: ["Microsoft Edge", webdriver.Edge, "/Users/sha549/Documents/msedgedriver.exe"],
+        3: ["Mozilla Firefox", webdriver.Firefox, "/Users/sha549/Documents/chromedriver.exe"]
     }
 
     def setSettings(self, appCode, browserCode):
@@ -44,16 +43,7 @@ class AutoTesting:
 
     #   Everything points to Chrome driver for now
     def setServiceObject(self):
-        match self.browserCode:
-            case 1:
-                self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
-                return
-            case 2:
-                self.serviceObject = Service("/Users/sha549/Documents/msedgedriver.exe")
-                return
-            case 3:
-                self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
-                return
+        self.serviceObject = Service(self.browsers[self.browserCode][2])
 
     def goToApplication(self):
         try:
