@@ -2,6 +2,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import SessionNotCreatedException
 from selenium.webdriver.chrome.options import Options
 # from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -23,17 +24,17 @@ class AutoTesting:
     closeProgram = -1
     # Application Option
     applications = {
-        1: ["Inventory Management", "http://inventorymanagement.targa.com/"],
-        2: ["Waterfield", "http://waterfield.com/"],  # pretend these urls point to their respective urls
-        3: ["SharePoint", "http://sharepoint.com."],
+        1: ["Inventory Management (Prod)", "http://inventorymanagement.targa.com/"],
+        2: ["Inventory Management (Dev)", "http://inventorymanagementdev.targa.com/"],  # pretend these urls point to their respective urls
+        3: ["Waterfield", "https://wfprod.targaresources.com/"],
         4: ["OneStream", "http://onestream.com/"],
         5: ["Bad URL Test", "http://ThisIsAFakeURL23049012387wx1.com/"]
     }
     # Types of browsers
     browsers = {
-        1: ["Google Chrome",  "webdriver.Chrome(service=serviceObject)"],
-        2: ["Microsoft Edge", "webdriver.Edge(service=serviceObject)"],
-        3: ["Mozilla Firefox", "webdriver.Firefox(service=serviceObject)"]
+        1: ["Google Chrome",  webdriver.Chrome],
+        2: ["Microsoft Edge", webdriver.Edge],
+        3: ["Mozilla Firefox", webdriver.Firefox]
     }
 
     def setSettings(self, appCode, browserCode):
@@ -53,26 +54,15 @@ class AutoTesting:
             case 3:
                 self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
                 return
-            # case 4:
-            #     self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
-            #     return
+
     def goToApplication(self):
-        match self.browserCode:
-            case 1:
-                self.driver = webdriver.Chrome(service=self.serviceObject)
-            case 2:
-                self.driver = webdriver.Edge(service=self.serviceObject)
-            case 3:
-                self.driver = webdriver.Chrome(service=self.serviceObject)
-        match self.applicationCode:
-            case 1:
-                self.driver.get(self.applications[1][1])
-            case 2:
-                self.driver.get("https://www.google.com")   # "Waterfield"
-            case 3:
-                self.driver.get("https://www.reddit.com")   # "Sharepoint"
-            case 4:
-                self.driver.get("https://www.targaresources.com")   # "OneStream"
+        try:
+            self.driver = self.browsers[self.browserCode][1](service=self.serviceObject)
+        except SessionNotCreatedException as exceptionRaised:
+            print("\nUnable to start session. \nPlease check webdriver and browser version.\n")
+            quit()
+        else:
+            self.driver.get(self.applications[self.applicationCode][1])
         time.sleep(2)
 
     def goToURL(self, url):
@@ -118,6 +108,12 @@ class AutoTesting:
 
     def sendKeys(self, comment, keysToSend):
         return 0
+
+
+# add selenium exceptions here:
+
+
+
 
 
 # class AutoTesting:

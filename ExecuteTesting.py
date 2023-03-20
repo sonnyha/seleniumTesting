@@ -3,7 +3,7 @@ import os
 import datetime
 import time
 import requests
-
+from selenium.common.exceptions import NoSuchElementException
 
 class bcolors:
     HEADER = '\033[95m'
@@ -35,9 +35,9 @@ class ExecuteTesting:
     def welcomeText(self):
         print("\nWelcome to Automated Testing Script")
         self.applicationSelection = int(input("Select Application:\n"
-                                            "1) Inventory Management\n"
-                                            "2) Waterfield \n"
-                                            "3) SharePoint\n"
+                                            "1) Inventory Management (Prod)\n"
+                                            "2) Inventory Management (Dev)\n"
+                                            "3) Waterfield\n"
                                             "4) OneStream\n"
                                             "5) Bad URL Test\n"
                                           ))
@@ -55,9 +55,10 @@ class ExecuteTesting:
             print("Status Code: " + str(self.connectionCode))
     def connectionFailed(self):
         self.logfile = "\nConnection could not be made to " + self.AutoTestingObj.application + "! " + bcolors.FAIL + "(Failed) (" + self.AutoTestingObj.url + ")" + bcolors.ENDC
-
+        self.logfile = self.logfile + bcolors.FAIL + "\nStatus Code: " + str(self.connectionCode) + bcolors.ENDC + "\n"
     def connectionSuccessful(self):
         self.logfile = self.logfile + "\nConnection made to " + self.AutoTestingObj.application + bcolors.OKGREEN + " (Successful)" + bcolors.ENDC
+        self.logfile = self.logfile + bcolors.OKGREEN + "\nStatus Code: " + str(self.connectionCode) + bcolors.ENDC + "\n"
 
     def saveLogFile(self):
         return "\n" + self.logfile
@@ -96,7 +97,6 @@ class ExecuteTesting:
         now = datetime.datetime.now()
         self.execution_start = str(now.strftime("%x %X"))
         self.logfile = self.logfile + "----------Log File For " + self.AutoTestingObj.application + "---------------"
-        # self.logfile = self.logfile + "\nGo To Application " + self.AutoTestingObj.application + " (successful)"
 
 #   Provides a response to users defined in the notification list that the execution
     #   has completed, the status of the test, and the time/duration of the testing execution
