@@ -5,8 +5,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
-from importTest import testFunction
-
 #   bare minimum you need for selenium to work
 #   initialize the service (where your driver lives, in this case chromedriver)
 #   initialize driver... this object is what you will use to manipulate the web application

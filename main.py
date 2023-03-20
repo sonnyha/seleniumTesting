@@ -1,4 +1,5 @@
 import ExecuteTesting as ET
+import TestingFunction as TestFunc
 appOpen = -1
 logfile = ""
 
@@ -27,6 +28,8 @@ while appOpen != 2:
         test.connectionSuccessful()
         print("Connection Initiated...")
 
+
+
     # # #   Testing URL Change function in main.py
     # test.goToURLTest("https://www.targaresources.com")      # Testing Purposes (will not be in main.py)
     # test.goToURLTest("https://www.bbc.com/")                # Testing Purposes (will not be in main.py)
@@ -38,11 +41,11 @@ while appOpen != 2:
     test.endTime()
     test.timeElapsed()
     appOpen = int(test.closeAppPrompt())    # Returns 1 (Yes) or 2 (No), Loops if 1
+    logfile = logfile + test.logfile
+    # test.printLog()
 test.printAllSettings()
-test.printLog()
+print(logfile)
 print("\nThank you, come again.")
-
-
 
 
 

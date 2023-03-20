@@ -5,8 +5,17 @@ import time
 import requests
 
 
-from timeit import default_timer as timer
-# start = timer() end = timer() print(end - start)
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 
 class ExecuteTesting:
     logfile = "\n"
@@ -42,16 +51,16 @@ class ExecuteTesting:
         self.AutoTestingObj.browserCode = self.browserSelection
 
     def connectionTest(self):
-            self.connectionCode = requests.get(self.AutoTestingObj.url, verify=False).status_code
+            self.connectionCode = requests.get(self.AutoTestingObj.url, verify=False, timeout=20).status_code
             print("Status Code: " + str(self.connectionCode))
     def connectionFailed(self):
-        self.logfile = "\nConnection could not be made to " + self.AutoTestingObj.application + "! (Failed)" + "\nError Code: " + str(self.connectionCode)
+        self.logfile = "\nConnection could not be made to " + self.AutoTestingObj.application + "! " + bcolors.FAIL + "(Failed) (" + self.AutoTestingObj.url + ")" + bcolors.ENDC
 
     def connectionSuccessful(self):
-        self.logfile = self.logfile + "\nConnection made to " + self.AutoTestingObj.application + " (successful)"
+        self.logfile = self.logfile + "\nConnection made to " + self.AutoTestingObj.application + bcolors.OKGREEN + " (Successful)" + bcolors.ENDC
 
     def saveLogFile(self):
-        return self.logfile
+        return "\n" + self.logfile
 
     def printSettings(self):
         print(self.AutoTestingObj.application)
@@ -84,11 +93,10 @@ class ExecuteTesting:
 #   Defines a new log file and execution status,
 #   the creates a new instance of AutoTesting and begins the testing process
     def launchAutoTesting(self):
-        AutoTestingObj = AutoTesting.AutoTesting()
         now = datetime.datetime.now()
         self.execution_start = str(now.strftime("%x %X"))
         self.logfile = self.logfile + "----------Log File For " + self.AutoTestingObj.application + "---------------"
-        self.logfile = self.logfile + "\nGo To Application " + self.AutoTestingObj.application + " (successful)"
+        # self.logfile = self.logfile + "\nGo To Application " + self.AutoTestingObj.application + " (successful)"
 
 #   Provides a response to users defined in the notification list that the execution
     #   has completed, the status of the test, and the time/duration of the testing execution
@@ -105,29 +113,10 @@ class ExecuteTesting:
     def setServiceObject(self):
         self.AutoTestingObj.setServiceObject()
 
-# dummy functions to test for raising exceptions
-    def divisionByZero(self):
-        result = 1/0
-        return result
-
-    def charPlusInt(self):
-        result = 'c' + 1
-        return result
-
-    def outOfIndex(self):
-        result = [1, 2]
-        return result[3]
-
-    def this_passes(self):
-        result = 1/1
-        return result
-
-    def openTest(self):
-        return open("fakeTextFile.txt")
 
     def goToURLTest(self, url):
         self.AutoTestingObj.goToURL(url)
-        self.logfile = self.logfile + "\nGo To URL: " + url + " (successful)"
+        self.logfile = self.logfile + "\nGo To URL: " + url + bcolors.OKGREEN + " (successful)" + bcolors.ENDC
         time.sleep(2)
         return
 
@@ -153,7 +142,7 @@ class ExecuteTesting:
 
 
 
-# Libraries needed
+# Libraries needed for specifically for webdriver elements
 # from selenium.common.exceptions import NoSuchElementException
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import WebDriverWait

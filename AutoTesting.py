@@ -55,7 +55,7 @@ class AutoTesting:
                 return
             # case 4:
             #     self.serviceObject = Service("/Users/sha549/Documents/chromedriver.exe")
-                return
+            #     return
     def goToApplication(self):
         match self.browserCode:
             case 1:
