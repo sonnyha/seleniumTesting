@@ -34,26 +34,31 @@ class ExecuteTesting:
 
     def welcomeText(self):
         print("\nWelcome to Automated Testing Script")
-
         while self.applicationSelection not in self.AutoTestingObj.applications:
-            self.applicationSelection = int(input("Select Application:\n"
-                                                "1) Inventory Management (Prod)\n"
-                                                "2) Inventory Management (Dev)\n"
-                                                "3) Waterfield\n"
-                                                "4) OneStream\n"
-                                                "5) Bad URL Test\n"
-                                                "6) Exit\n"
-                                              ))
+            try:
+                self.applicationSelection = int(input("Select Application:\n"
+                                                    "1) Inventory Management (Prod)\n"
+                                                    "2) Inventory Management (Dev)\n"
+                                                    "3) Waterfield\n"
+                                                    "4) OneStream\n"
+                                                    "5) Bad URL Test\n"
+                                                    "6) Exit\n"
+                                                  ))
+            except:
+                print("Invalid Entry. Please select options 1-6\n")
         if self.applicationSelection == 6:
             print("\nThank you, come again.")
             quit()
         while self.browserSelection not in self.AutoTestingObj.browsers:
-            self.browserSelection = int(input("Select Browser:\n"
-                                          "1) Google Chrome\n"
-                                          "2) Microsoft Edge\n"
-                                          "3) Mozilla Firefox\n"
-                                          "4) Exit\n"
-                                          ))
+            try:
+                self.browserSelection = int(input("Select Browser:\n"
+                                              "1) Google Chrome\n"
+                                              "2) Microsoft Edge\n"
+                                              "3) Mozilla Firefox\n"
+                                              "4) Exit\n"
+                                              ))
+            except:
+                print("Invalid Entry. Please select options 1-4\n")
         if self.browserSelection == 4:
             print("\nThank you, come again.")
             quit()
