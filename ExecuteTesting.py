@@ -34,23 +34,26 @@ class ExecuteTesting:
 
     def welcomeText(self):
         print("\nWelcome to Automated Testing Script")
-        self.applicationSelection = int(input("Select Application:\n"
-                                            "1) Inventory Management (Prod)\n"
-                                            "2) Inventory Management (Dev)\n"
-                                            "3) Waterfield\n"
-                                            "4) OneStream\n"
-                                            "5) Bad URL Test\n"
-                                            "6) Exit\n"
-                                          ))
+
+        while self.applicationSelection not in self.AutoTestingObj.applications:
+            self.applicationSelection = int(input("Select Application:\n"
+                                                "1) Inventory Management (Prod)\n"
+                                                "2) Inventory Management (Dev)\n"
+                                                "3) Waterfield\n"
+                                                "4) OneStream\n"
+                                                "5) Bad URL Test\n"
+                                                "6) Exit\n"
+                                              ))
         if self.applicationSelection == 6:
             print("\nThank you, come again.")
             quit()
-        self.browserSelection = int(input("Select Browser:\n"
-                                      "1) Google Chrome\n"
-                                      "2) Microsoft Edge\n"
-                                      "3) Mozilla Firefox\n"
-                                      "4) Exit\n"
-                                      ))
+        while self.browserSelection not in self.AutoTestingObj.browsers:
+            self.browserSelection = int(input("Select Browser:\n"
+                                          "1) Google Chrome\n"
+                                          "2) Microsoft Edge\n"
+                                          "3) Mozilla Firefox\n"
+                                          "4) Exit\n"
+                                          ))
         if self.browserSelection == 4:
             print("\nThank you, come again.")
             quit()
@@ -59,8 +62,8 @@ class ExecuteTesting:
         self.AutoTestingObj.browserCode = self.browserSelection
 
     def connectionTest(self):
-            self.connectionCode = requests.get(self.AutoTestingObj.url, verify=False, timeout=20).status_code
-            print("Status Code: " + str(self.connectionCode))
+        self.connectionCode = requests.get(self.AutoTestingObj.url, verify=False, timeout=20).status_code
+        print("Status Code: " + str(self.connectionCode))
 
     def connectionFailed(self):
         self.logfile = "\nConnection could not be made to " + self.AutoTestingObj.application + "! " + bcolors.FAIL + "(Failed) (" + self.AutoTestingObj.url + ")" + bcolors.ENDC

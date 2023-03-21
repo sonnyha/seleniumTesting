@@ -26,13 +26,15 @@ class AutoTesting:
         1: ["Inventory Management (Prod)", "http://inventorymanagement.targa.com/"],
         2: ["Inventory Management (Dev)", "http://inventorymanagementdev.targa.com/"],
         4: ["OneStream", "http://onestream.com/"],
-        5: ["Bad URL Test", "http://ThisIsAFakeURL23049012387wx1.com/"]
+        5: ["Bad URL Test", "http://ThisIsAFakeURL23049012387wx1.com/"],
+        6: ["Exit", "", ""]
     }
     # Types of browsers
     browsers = {
         1: ["Google Chrome",  webdriver.Chrome, "/Users/sha549/Documents/chromedriver.exe"],
         2: ["Microsoft Edge", webdriver.Edge, "/Users/sha549/Documents/msedgedriver.exe"],
-        3: ["Mozilla Firefox", webdriver.Firefox, "/Users/sha549/Documents/chromedriver.exe"]
+        3: ["Mozilla Firefox", webdriver.Firefox, "/Users/sha549/Documents/chromedriver.exe"],
+        4: ["Exit", "", ""]
     }
 
     def setSettings(self, appCode, browserCode):
@@ -98,12 +100,6 @@ class AutoTesting:
 
     def sendKeys(self, comment, keysToSend):
         return 0
-
-
-# add selenium exceptions here:
-
-
-
 
 
 # class AutoTesting:
