@@ -58,14 +58,14 @@ class ExecuteTesting:
         self.AutoTestingObj.applicationCode = self.applicationSelection
         self.AutoTestingObj.browserCode = self.browserSelection
 
-
-
     def connectionTest(self):
             self.connectionCode = requests.get(self.AutoTestingObj.url, verify=False, timeout=20).status_code
             print("Status Code: " + str(self.connectionCode))
+
     def connectionFailed(self):
         self.logfile = "\nConnection could not be made to " + self.AutoTestingObj.application + "! " + bcolors.FAIL + "(Failed) (" + self.AutoTestingObj.url + ")" + bcolors.ENDC
         self.logfile = self.logfile + bcolors.FAIL + "\nStatus Code: " + str(self.connectionCode) + bcolors.ENDC + "\n"
+
     def connectionSuccessful(self):
         self.logfile = self.logfile + "\nConnection made to " + self.AutoTestingObj.application + bcolors.OKGREEN + " (Successful)" + bcolors.ENDC
         self.logfile = self.logfile + bcolors.OKGREEN + "\nStatus Code: " + str(self.connectionCode) + bcolors.ENDC + "\n"

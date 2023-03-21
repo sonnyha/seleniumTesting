@@ -24,8 +24,7 @@ class AutoTesting:
     # Application Option
     applications = {
         1: ["Inventory Management (Prod)", "http://inventorymanagement.targa.com/"],
-        2: ["Inventory Management (Dev)", "http://inventorymanagementdev.targa.com/"],  # pretend these urls point to their respective urls
-        3: ["Waterfield", "https://wfprod.targaresources.com/"],
+        2: ["Inventory Management (Dev)", "http://inventorymanagementdev.targa.com/"],
         4: ["OneStream", "http://onestream.com/"],
         5: ["Bad URL Test", "http://ThisIsAFakeURL23049012387wx1.com/"]
     }
@@ -50,6 +49,7 @@ class AutoTesting:
             self.driver = self.browsers[self.browserCode][1](service=self.serviceObject)
         except SessionNotCreatedException as exceptionRaised:
             print("\nUnable to start session. \nPlease check webdriver and browser version.\n")
+            print("Session Aborted.\n")
             quit()
         else:
             self.driver.get(self.applications[self.applicationCode][1])
