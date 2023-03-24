@@ -40,9 +40,8 @@ class ExecuteTesting:
                                                     "1) Inventory Management (Prod)\n"
                                                     "2) Inventory Management (Dev)\n"
                                                     "3) Waterfield\n"
-                                                    "4) OneStream\n"
-                                                    "5) Bad URL Test\n"
-                                                    "6) Exit\n"
+                                                    "4) Bad URL Test\n"
+                                                    "5) Exit\n"
                                                   ))
             except:
                 print("Invalid Entry. Please select options 1-6\n")
@@ -155,25 +154,3 @@ class ExecuteTesting:
         self.AutoTestingObj.clickOnObj(locator, locatorName)
         self.logfile = self.logfile + "\nClick On web element " + locator + ": " + locatorName + " (successful)"
         return
-
-
-
-
-# Libraries needed for specifically for webdriver elements
-# from selenium.common.exceptions import NoSuchElementException
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-#
-# def handleError(driver, locator):
-#     try:
-#         # Find the web element using the given locator
-#         element = WebDriverWait(driver, 10).until(
-#             EC.presence_of_element_located(locator)
-#         )
-#         return element
-#     except NoSuchElementException as e:
-#         # This block will execute if the element is not found
-#         # Here, we print the exception message and return the exception object
-#         print(f"An exception occurred: {e}")
-#         return e

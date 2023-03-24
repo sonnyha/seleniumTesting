@@ -22,7 +22,7 @@ while appOpen != 2:
     test.endTime()                          # Ending Time
     print(test.timeElapsed())                      # timeElapsed = (Ending Time - Start Time)
     appOpen = int(test.closeAppPrompt())    # Returns 1 (Yes) or 2 (No), Loops if 1
-    logfile += test.logfile        # Storing logs
+    logfile += test.logfile                 # Storing logs
 test.printAllSettings()                     # Print settings
 print(logfile)                              # Print log
 print("\nThank you, come again.")
